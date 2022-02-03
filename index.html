@@ -63,6 +63,7 @@
             </tr></thead><tbody>`;
 
             for (let i = 0; i < data.length; i++) {
+                var username = (data[i].username=='BTDeveloperCommunity')? 'btdevcommunity':data[i].username;
                 var row = `<tr>
 				<td>${i + 1}</td>
 				<td><table class="nested-table">
@@ -72,8 +73,7 @@
             <td>${data[i].commiterName}</a></td>
         </tr>
     </table></td>
-				<td><a target="_blank" href="https://github.com/${data[i].username}">${data[i].username
-                    }</a></td>
+				<td><a target="_blank" href="https://github.com/${username}">${username}</a></td>
 				<td>${data[i].commitCount}</td>
 			</tr>`;
                 table += row;
@@ -203,6 +203,7 @@
             if (reposList[i] == "dev.bt") {
                 continue;
             }
+
             const data = get_all_commits(owner, reposList[i], branch);
             buildTable(data, reposList[i]);
         }
