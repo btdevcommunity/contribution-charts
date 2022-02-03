@@ -11,7 +11,7 @@
 <!--  Don't write above this -->
 <!-- Start Writing here -->
 
-All the contributions by the community to Bhutan Developer Community will be seen on this contribution chart.
+All the contributions by the contributer to Bhutan Developer Community will be seen on this contribution chart.
 
 <!-- Dont write anything below this -->
 
