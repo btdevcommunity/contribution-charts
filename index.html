@@ -150,22 +150,31 @@
                     commitCount: 1,
                 }))
             );
-
+            
             // assign number of commits to each user
             var keys = Object.keys(tempObj);
+            
             for (let i = 0; i < keys.length; i++) {
                 if (keys[i] === data[i].commiterName) {
                     data[i].commitCount = tempObj[keys[i]];
                 }
+                //manualy add Chimi-S commit count to Chimi Thinely
+                if(data[i].commiterName=='Chimi Thinley'){
+                    data[i].commitCount+=2;
+                }
+                
             }
 
-            // sort data according to commitNumbers
+            
+            
 
+            // sort data according to commitNumbers
             data.sort((a, b) => {
                 return b.commitCount - a.commitCount;
             });
 
-            return data;
+            //manually remove the double users 'Chimi-S' under 'devbt.org' repository
+            return data.filter(item=>!(item.commiterName == 'Chimi-S'));
         }
 
         // function to get first commit in the repo
