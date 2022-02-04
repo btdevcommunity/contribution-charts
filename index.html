@@ -158,23 +158,14 @@
                 if (keys[i] === data[i].commiterName) {
                     data[i].commitCount = tempObj[keys[i]];
                 }
-                //manualy add Chimi-S commit count to Chimi Thinely
-                if(data[i].commiterName=='Chimi Thinley'){
-                    data[i].commitCount+=2;
-                }
-                
             }
-
-            
-            
 
             // sort data according to commitNumbers
             data.sort((a, b) => {
                 return b.commitCount - a.commitCount;
             });
 
-            //manually remove the double users 'Chimi-S' under 'devbt.org' repository
-            return data.filter(item=>!(item.commiterName == 'Chimi-S'));
+            return data;
         }
 
         // function to get first commit in the repo
@@ -200,6 +191,26 @@
             return first_commit_hash;
         }
 
+        //function to remove duplicate User
+        function removeDupicateUser(array){
+            const size = array.length;
+            var newArray=Array();
+            newArray[0] = array[0];
+            for(i=1; i<size; i++){
+                var flag = 0
+                for(j=i-1; j>=0; j--){
+                    if(array[i].username==array[j].username){
+                       flag=1; 
+                       break;
+                    }
+                }
+                if(flag==0){
+                    newArray[i]=array[i];
+                }
+            }
+            return newArray;
+        }
+
         // main code
 
         // declaring GitHub account username and branch
@@ -213,7 +224,8 @@
                 continue;
             }
 
-            const data = get_all_commits(owner, reposList[i], branch);
+            const data = removeDupicateUser(get_all_commits(owner, reposList[i], branch));
+
             buildTable(data, reposList[i]);
         }
 
