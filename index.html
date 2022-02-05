@@ -90,11 +90,10 @@
             let repo = httpGet(url);
             var repoData = JSON.parse(repo);
             var repoList = [];
-
+            
             for (let i = 0; i < repoData.length; i++) {
                 repoList.push(repoData[i].name);
             }
-
             return repoList;
         }
 
@@ -223,10 +222,11 @@
             if (reposList[i] == "dev.bt") {
                 continue;
             }
-
+            let btnRepoList = reposList[i]
             const data = removeDupicateUser(get_all_commits(owner, reposList[i], branch));
-
-            buildTable(data, reposList[i]);
+            
+            
+            buildTable(data, btnRepoList);
         }
 
 
